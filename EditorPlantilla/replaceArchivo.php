@@ -70,7 +70,7 @@ try {
     }
     $fecha = date('Y-m-d');
     $hora = date('H:i:s');
-    $insert = commit($_SESSION['usr'], $id_edicion,$id_formato, '', $fecha, $hora);
+    $insert = commit($_SESSION['usr'], $id_formato,$id_edicion, '', $fecha, $hora);
     // Commit de la transacción
     sqlsrv_commit($cnx);
 
