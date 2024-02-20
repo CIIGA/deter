@@ -110,13 +110,13 @@ if (sqlsrv_has_rows($sql_historial)) {
       case 13:
         $sql = sqlsrv_query($cnx, "select nombreUsr from usuarioNuevo as u  where u.id_usuarioNuevo='$id_campo'");
         $datos = sqlsrv_fetch_array($sql);
-        $Nuser=$datos['nombreModulo'];
+        $Nuser=$datos['nombreUsr'];
         $comentario = 'El usuario edito el estado del usuario '.$Nuser.'';
         break;
       case 14:
         $sql = sqlsrv_query($cnx, "select nombreUsr from usuarioNuevo as u  where u.id_usuarioNuevo='$id_campo'");
         $datos = sqlsrv_fetch_array($sql);
-        $Nuser=$datos['nombreModulo'];
+        $Nuser=$datos['nombreUsr'];
         $comentario = 'El usuario actualizo los datos del usuario '.$Nuser.'';
         break;
       
