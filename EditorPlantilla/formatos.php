@@ -211,7 +211,7 @@ if ($id_rol == 1) {
                                     </td>
                                 <?php } ?>
                                 <td class="text-center">
-                                    <a id="btnImprimir" href="#" class="btn btn-info">Imprimir</a>
+                                    <button data-id_formato="<?= $formatos['id'] ?>" class="btn btn-info btnImprimir">Imprimir</button>
                                 </td>
                             </tr>
                         <?php

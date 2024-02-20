@@ -1,7 +1,8 @@
 // Agrega un evento click al botón de imprimir
-$("#btnImprimir").click(function (e) {
+$(".btnImprimir").click(function (e) {
   e.preventDefault(); // Evita el comportamiento predeterminado del enlace
-
+  var idFormato = $(this).data("id_formato");
+  console.log(idFormato);
   // Muestra una alerta de SweetAlert con dos botones
   Swal.fire({
     title: "¿Qué acción deseas realizar para imprimir el formato?",
@@ -13,7 +14,7 @@ $("#btnImprimir").click(function (e) {
     if (result.isConfirmed) {
       // Si elige "Masivo", redirige a una vista con parámetros PHP
       window.location.href =
-        'masivo.php?parametro1=<?= "hola" ?>&parametro2=<?= "hola" ?>'; // Actualiza los parámetros según tus variables PHP
+        'cargaPeticion.php?f=' +idFormato; // Actualiza los parámetros según tus variables PHP
     } else if (result.dismiss === Swal.DismissReason.cancel) {
       // Si elige "Individual", pide un número de identificación
       Swal.fire({
