@@ -29,30 +29,37 @@ if (isset($_SESSION['usr']) and ($_SESSION['rol'] == 1 || $_SESSION['rol'] == 2)
     }
     $fecha = date('Y-m-d');
     $hora = date('H:i:s');
+
+$validar=false;
     
     if ($tamanio != '0') {
+       
         $update = sqlsrv_query($cnx, "UPDATE formatos set tamanio='$tamanio' where id='$id_formato'");
-        
+        $validar=true;
         $insert = commit($_SESSION['usr'],$id_formato, 7, '', $fecha, $hora);
     }
     // validar si cambio los margenes
     $margenes = sqlsrv_query($cnx, "select * from formatos where id='$id_formato' and [top]='$top' and [bottom]='$bottom' and [left]='$left' and [right]='$right'");
     if (!sqlsrv_has_rows($margenes)) {
         $update = sqlsrv_query($cnx, "UPDATE formatos set [top]='$top',[bottom]='$bottom',[left]='$left',[right]='$right' where id='$id_formato'");
-        $insert = commit($_SESSION['usr'],$_SESSION['f'] , 6, '', $fecha, $hora);
+        $insert = commit($_SESSION['usr'],$id_formato , 6, '', $fecha, $hora);
+        $validar=true;
     } 
 
 
 
-
+if ($validar) {
     if (!$update) {
         $_SESSION['error'] = 'Error al actualizar el formato, comuniquese con soporte.';
         header("Location: formatos.php");
         exit();
     }
-    $_SESSION['success'] = 'Formato acualizado correctamente.';
+    
+}
+$_SESSION['success'] = 'Formato acualizado correctamente.';
     header("Location: formatos.php");
     exit();
+    
 } else {
     echo '<meta http-equiv="refresh" content="1,url=../modulos/administrator/logout.php">';
 }

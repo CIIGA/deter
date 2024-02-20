@@ -56,52 +56,47 @@ if ((isset($_SESSION['usr'])) and (isset($_SESSION['rol']))) {
     <div class="container col-md-10">
       <div class="form-row">
         <div class="form-group col-md-6">
-          <h2 style="text-shadow: 0px 0px 2px #717171;"><img width="72" height="64" src="../img/flor.png" alt="flower" />Implementta DCF</h2>
-          <h4 style="text-shadow: 0px 0px 2px #717171;">Historial de actualizaciones</h4>
+          <h5 style="text-shadow: 0px 0px 2px #717171;"><img src="https://img.icons8.com/fluency/32/time-machine.png" /> Historial de actualizaciones</h5>
         </div>
         <div class="form-group col-md-6" style="text-align: center;">
-          <a href="../" class="btn btn-app bg-gradient-dark">
-            <i class="fas fa-chevron-left"></i> Regresar
-          </a>
         </div>
       </div>
-      <hr>
-
-
-
-
-
-
-
-
-
-
-
 
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group">
-                <label for="fecha">Selecciona una fecha:</label>
-                <input type="date" id="fecha" class="form-control">
-                <button id="buscar" class="btn btn-primary mt-2">Buscar</button>
-              </div>
-              <div class="timeline">
-                <div class="time-label">
-                  <span id="fecha-seleccionada" class="bg-red"></span>
+              <div class="container">
+                <div class="row justify-content-center mb-3">
+                  <div class="col-md-8">
+                    <h6 class="text-center mb-3 text-bold">Rango de fechas a buscar</h6>
+                    <div class="form-group row">
+                      <label for="fechaI" class="col-md-2 col-form-label text-right">Fecha Inicio:</label>
+                      <div class="col-md-3">
+                        <input type="date" id="fechaI" class="form-control" value="<?= date('Y-m-d') ?>">
+                      </div>
+                      <label for="fechaF" class="col-md-2 col-form-label text-right">Fecha Fin:</label>
+                      <div class="col-md-3">
+                        <input type="date" id="fechaF" class="form-control" value="<?= date('Y-m-d') ?>">
+                      </div>
+                      <div class="col-md-2">
+                        <button id="buscar" class="btn btn-primary">Buscar</button>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div id="contenido-timeline">
-                  <!-- Aquí se llenará el contenido con AJAX -->
-                </div>
               </div>
+
+              <div id="contenido-timeline" class="timeline overflow-auto" style="max-height: 500px;">
+                <!-- Aquí se llenará el contenido con AJAX -->
+              </div>
+
             </div>
           </div>
         </div>
-
-
       </section>
+
       <!-- /.content -->
 
 
@@ -117,7 +112,6 @@ if ((isset($_SESSION['usr'])) and (isset($_SESSION['rol']))) {
 
 
     </div>
-    <br><br>
     <!--*************************INICIO FOOTER***********************************************************************-->
     <nav class="navbar sticky-bottom navbar-expand-lg">
       <span class="navbar-text" style="font-size:12px;font-weigth:normal;color: #7a7a7a;">
@@ -163,34 +157,9 @@ if ((isset($_SESSION['usr'])) and (isset($_SESSION['rol']))) {
   <script src="../plugins/summernote/summernote-bs4.min.js"></script>
   <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
   <script src="../dist/js/adminlte.min.js"></script>
- 
-  <script>
-  $(document).ready(function(){
-    function cargarContenidoTimeline(fecha) {
-        $.ajax({
-            url: 'test.php', // Ruta a tu script PHP que se encarga de obtener los datos de la base de datos
-            method: 'POST',
-            data: { fecha: fecha },
-            success: function(response) {
-                $('#contenido-timeline').html(response);
-            },
-            error: function(xhr, status, error) {
-                console.error(error);
-            }
-        });
-    }
-    
-    // Cargar contenido del timeline al cargar la página con la fecha de hoy por default
-    cargarContenidoTimeline($('#fecha-seleccionada').text());
-    
-    // Evento para cambiar la fecha seleccionada y cargar el contenido del timeline
-    $('#buscar').on('click', function() {
-        var fechaSeleccionada = $('#fecha').val();
-        cargarContenidoTimeline(fechaSeleccionada);
-    });
-});
+  <script src="historial.js"></script>
 
-</script>
+
   </html>
 <?php } else {
   echo '<meta http-equiv="refresh" content="0,url=logout.php">';

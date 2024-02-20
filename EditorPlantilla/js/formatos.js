@@ -87,7 +87,7 @@ $(".btnConfigurar").click(function () {
     }));
   } else {
     $('#tamanio').append($('<option>', {
-        value: 'oficio', // El valor de la opción
+        value: '0', // El valor de la opción
         text: 'oficio' // El texto que se mostrará en la opción
     }));
     $('#tamanio').append($('<option>', {

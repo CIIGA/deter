@@ -341,7 +341,7 @@ if ($id_rol == 1) {
                 </div>
                 <div class="modal-body">
                     <form action="configurar.php" method="post">
-                        <input type="hidden" id="c_id_formato" name="id_formato">
+                        <input type="text" id="c_id_formato" name="id_formato">
                         <div class="input-group mb-3 text-center">
                             <label class="form-label">Define el margen al que desea actualizar el formato</label>
                             <div class="row">
