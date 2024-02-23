@@ -1,0 +1,57 @@
+
+  @font-face {
+    font-family: 'CalibriRegular';
+    font-style: normal;
+    font-weight: normal;
+    src: url(font/Calibri/CalibriRegular.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'CalibriCursiva';
+    font-style: normal;
+    font-weight: normal;
+    src: url(font/Calibri/CalibriCursiva.ttf) format('truetype');
+}
+
+.texto-parrafo {
+    text-align: justify;
+    font-size: 8pt;
+    line-height: 1;
+    font-family: 'CalibriRegular';
+}
+
+body {
+    font-family: arial;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+hr {
+    page-break-after: always;
+    border: 0;
+}
+
+.tabla-back {
+    width: 100%;
+    background-image: url(https://beautiful-einstein.51-79-98-210.plesk.page/deter/EditorPlantilla/pdf/imagenes/guadalajara/backMark.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.imageTableSIA {
+    background-position: right;
+    background-image: url(https://beautiful-einstein.51-79-98-210.plesk.page/deter/EditorPlantilla/pdf/imagenes/guadalajara/SiAPA_Letras_2.png);
+    background-size: 12mm 8mm;
+    background-repeat: no-repeat;
+}
+
+/* pre { margin:10px 0; padding:5px; } Revisar utilidad en el espacio para la firma */
+
+div.absolute {
+    border: 0;
+    position: absolute;
+    padding: 0.5em;
+    text-align: center;
+    vertical-align: middle;
+}

@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+if ( isset($_SESSION['usr']) !== true and isset($_SESSION['rol']) !== true ) {
+    echo '<meta http-equiv="refresh" content="1,url=../index.php">';
+    exit();
+}
+
 require "../acnxerdm/cnx.php";
 //session_start();
 // $_SESSION['plz'] = 1027;
@@ -97,7 +103,7 @@ if(isset($_POST['upload'])){
                 }
             }
 
-            if(count($filaExcel1) > 0){   
+            if(count($filaExcel1) > 0){
                 if(sqlsrv_query($cnxa,$insertConsulta.generarValues(count($filaExcel1)),$filaExcel1) == false ){
                     // print_r(sqlsrv_errors() );
                     // exit();
@@ -188,7 +194,7 @@ if(isset($_POST['upload'])){
     <?php } ?>
     <div class="text-center">
         <h4 style="text-shadow: 0px 0px 2px #717171;"><img src="https://img.icons8.com/fluency/38/rtf-document.png" /> Carga de cuentas GUADALAJARA para PDF Masivo</h4>
-        <h4 style="text-shadow: 0px 0px 2px #717171;"> Conectado a: <?php echo $nombrePlaza; ?></h4>
+        <!-- <h4 style="text-shadow: 0px 0px 2px #717171;"> Conectado a: <?php //echo $nombrePlaza; ?></h4> -->
     </div>
     <?php if( isset($_GET['tkn']) ){ ?>
     <br/>
@@ -202,7 +208,10 @@ if(isset($_POST['upload'])){
                 <br/>
                 <input type="file" name="peticionFile">
                 <br/>
-                <button class="btn btn-primary" onclick="espera()" name="upload"> Subir cuentas </button>
+                <div>
+                    <button class="btn btn-primary btn-sm" onclick="espera()" name="upload"> Subir cuentas </button>
+                    <a class="btn btn-dark btn-sm" href="formatos.php">Volver atrás</a>
+                </div>
                 <br/>
             </div>
         </form>
@@ -233,13 +242,10 @@ if(isset($_POST['upload'])){
         showConfirmButton: true,
         allowOutsideClick: false, // Evitar que se cierre haciendo clic afuera
         allowEscapeKey: false, // Evitar que se cierre presionando Esc
-        confirmButtonText: "Nueva peticion",
-        didOpen: () => {
-            Swal.showLoading();
-        }
+        confirmButtonText: "Nueva peticion"
         }).then((result) => {
             if (result.isConfirmed) {
-                location.href = "cargaPeticion.php?f=<?= $_GET['f'] ?>";
+                location.href = "cargaPeticion.php?f=" + <?= $_GET['f']; ?>;
             }
         });
     }
